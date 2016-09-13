@@ -8,6 +8,7 @@
  */
 package edu.elon.test;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 /**
@@ -56,8 +57,11 @@ public class ATM {
   public void deposit(double amount) throws IllegalArgumentException {
     if (amount < 0.0) {
       throw new IllegalArgumentException("Only positive values");
-    } else {
+    } else {      
+
       balance = balance + amount;
+      double roundBal = (double) Math.round(balance * 100) / 100;
+      balance = roundBal;
       numberOfDeposits++;
     }
   }
@@ -96,10 +100,12 @@ public class ATM {
    *         less than the amount currently in account balance.
    */
   public double withdraw(double amount) throws IllegalArgumentException {
-    if ((amount < 0) || (amount < balance)) {
+    if ((amount < 0) || (amount > balance)) {
       throw new IllegalArgumentException("Invalid withdrawal");
     } else {
       balance = balance - amount;
+      double roundBal = (double) Math.round(balance * 100) / 100;
+      balance = roundBal;
       numberOfWithdrawals++;
     }
     return amount;
