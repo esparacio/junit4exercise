@@ -75,6 +75,13 @@ public class ATMTest {
 		assertEquals(expected,actual,0);
 	}
 	
+	@Test
+	public void testWithdrawAmount() {
+		double actual = testATM.withdraw(10.4);
+		double expected = 10.4;		
+		assertEquals(expected,actual,0);
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void testWithdrawException(){
 		testATM.withdraw(432432.0);			
